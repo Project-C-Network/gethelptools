@@ -8,6 +8,7 @@ const Home = lazy(() => import("@/routes/Home"));
 const BmiTool = lazy(() => import("@/routes/BMICalculatorTool"));
 const QuoteGenerator = lazy(() => import("@/routes/QuoteGeneratorTool"));
 const AgeCalculator = lazy(() => import("@/routes/AgeCalculatorTool"));
+const CurrencyCalculator = lazy(() => import("@/routes/CurrencyConvertorTool"));
 const NotFound = lazy(() => import("@/routes/NotFound"));
 
 const AppRouter = () => (
@@ -19,6 +20,7 @@ const AppRouter = () => (
           <Route path="/bmi" element={<BmiTool />} />
           <Route path="/quotes" element={<QuoteGenerator />} />
           <Route path="/age-calculator" element={<AgeCalculator />} />
+          <Route path="/currency-calculator" element={<CurrencyCalculator />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

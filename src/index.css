@@ -28,8 +28,8 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
   min-height: 100vh;
+  background-color: #000;
 }
 
 h1 {
@@ -37,7 +37,7 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+/* button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -54,7 +54,7 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
+} */
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -64,7 +64,19 @@ button:focus-visible {
   a:hover {
     color: #747bff;
   }
-  button {
-    background-color: #f9f9f9;
-  }
 }
+
+.radial-orange-left {
+  background: radial-gradient(ellipse at left center,
+    #ff6b00 0%,
+    #ff8c00 20%,
+    #ffaa00 40%,
+    #ffd000 60%,
+    #ffff00 80%,
+    #fffac0 100%);
+  box-shadow: 0 0 6px #ff8c00, 0 0 12px #ffaa00, 0 0 18px #ffd000;
+  border-radius: 12px;
+}
+
+
+
