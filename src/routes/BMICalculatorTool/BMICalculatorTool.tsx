@@ -1,9 +1,11 @@
-const BMICalculatorTool = () => {
+import { BMICalculatorTool as BMICalculator } from "@/pages/index";
+
+const BmiCalculatorTool = () => {
   return (
-    <div>
-      <h1>BMI Calculator Tool</h1>
-    </div>
+    <>
+      <BMICalculator />
+    </>
   );
 };
 
-export default BMICalculatorTool;
+export default BmiCalculatorTool;

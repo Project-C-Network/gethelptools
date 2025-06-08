@@ -1,9 +1,12 @@
 import React, { useState, useEffect, ReactNode } from "react";
 import RGL, { WidthProvider, Layout } from "react-grid-layout";
+import { GiHamburgerMenu } from "react-icons/gi";
 import tilesData from "../../constants/resources/tiles/tiles.json";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import GHTFooter from "../GHTFooter";
+import GHTButton from "../GHTButton";
+import useHistoryPush from "../GHTCustomHooks/useHistoryPush";
 
 const GridLayout = WidthProvider(RGL);
 
@@ -137,6 +140,8 @@ const GHTBannerTiles: React.FC<Props> = ({ children }) => {
   const [mobileLayout, setMobileLayout] = useState<MobileTile[]>([]);
   const [showMobileTiles, setShowMobileTiles] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(true);
+  const push = useHistoryPush();
 
   useEffect(() => {
     const handleResize = () => {
@@ -149,12 +154,20 @@ const GHTBannerTiles: React.FC<Props> = ({ children }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const handleTilesNavigation = (pathName: string = "") => {
+    push(pathName);
+  };
+
   const desktopLayout = getPackedLayout(12, [5, 6]);
   const desktopColors = desktopLayout.map(() => getLumiaColor());
   const TILE_SIZE = 100;
 
   return (
     <div className="relative min-h-screen flex flex-col">
+      <GiHamburgerMenu
+        className={`text-white cursor-pointer ${isMobile && "hidden"}`}
+        onClick={() => setHamburgerMenuOpen(!hamburgerMenuOpen)}
+      />
       {isMobile && showMobileTiles && (
         <div
           className="relative w-full overflow-y-auto z-10"
@@ -180,16 +193,18 @@ const GHTBannerTiles: React.FC<Props> = ({ children }) => {
                   top: TILE_SIZE * tile.y,
                 }}
               >
-                {tilesData[+tile?.i]?.title ?? `Tile ${tile.i}`}
+                <p className="text-sm break-words whitespace-normal w-full text-center">
+                  {tilesData[+tile?.i]?.title ?? `Tile ${tile.i}`}
+                </p>
               </div>
             ))}
           </div>
-          <button
-            className="fixed bottom-4 right-4 z-20 bg-white text-black rounded-full w-10 h-10 text-xl font-bold shadow-lg"
+
+          <GHTButton
+            btnClassName="fixed bottom-4 right-4 z-20 bg-white text-black rounded-full w-10 h-10 text-xl font-bold shadow-lg"
             onClick={() => setShowMobileTiles(false)}
-          >
-            ×
-          </button>
+            label="×"
+          />
         </div>
       )}
 
@@ -199,7 +214,7 @@ const GHTBannerTiles: React.FC<Props> = ({ children }) => {
         </div>
       )}
 
-      {!isMobile && (
+      {!isMobile && hamburgerMenuOpen && (
         <div className="relative w-full max-h-[80vh] overflow-y-auto">
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-sky-400 text-white font-bold rounded-full flex items-center justify-center z-10 text-sm w-24 h-24 text-center px-2 whitespace-pre-line">
             {`GET
@@ -223,16 +238,14 @@ TOOLS`}
             }}
           >
             {desktopLayout.map((item, index) => (
-              <div
+              <GHTButton
                 key={item.i}
-                className="flex items-center justify-center text-white font-bold tile"
-                style={{
-                  background: desktopColors[index],
-                  borderRadius: "6px",
-                }}
-              >
-                <div>{tilesData[+item?.i]?.title ?? `Tile ${item.i}`}</div>
-              </div>
+                btnClassName="flex items-center justify-center text-white font-bold tile cursor-pointer rounded-md w-full h-full p-2"
+                style={{ backgroundColor: desktopColors[index] }}
+                labelClassName="text-sm break-words whitespace-normal w-full text-center"
+                label={tilesData[+item?.i]?.title ?? `Tile ${item.i}`}
+                onClick={() => handleTilesNavigation(tilesData[+item?.i]?.path)}
+              />
             ))}
           </GridLayout>
         </div>

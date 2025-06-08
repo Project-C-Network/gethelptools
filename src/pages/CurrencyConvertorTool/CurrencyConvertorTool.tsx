@@ -64,7 +64,7 @@ export const CurrencyConvertorTool: React.FC = () => {
   );
 
   return (
-    <div className="flex flex-col p-6 font-sans">
+    <div className="flex flex-col p-6 font-sans text-white">
       <div className="max-w-md mx-auto">
         <h2 className="text-2xl font-bold mb-4">Currency Converter</h2>
 
@@ -104,7 +104,7 @@ export const CurrencyConvertorTool: React.FC = () => {
           />
 
           <div className="flex justify-center w-full">
-            <GHTButton label="Convert" onClick={handleConvert} />
+            <GHTButton label="Convert" onClick={handleConvert} isTiles={false}  />
           </div>
         </div>
       </div>
