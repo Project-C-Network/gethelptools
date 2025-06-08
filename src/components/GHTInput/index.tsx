@@ -16,7 +16,7 @@ const GHTInput: React.FC<GHTInputProps> = ({
   type = "text",
 }) => {
   return (
-    <div className="p-5 overflow-hidden w-[60px] h-[60px] hover:w-[270px] focus-within:w-[270px] bg-[#4070f4] shadow-[2px_2px_20px_rgba(0,0,0,0.08)] rounded-full flex items-center duration-300 group">
+    <div className="p-5 overflow-hidden h-[60px] w-[350px] bg-[#4070f4] shadow-[2px_2px_20px_rgba(0,0,0,0.08)] rounded-full flex items-center duration-300 group">
       <div className="flex items-center justify-center fill-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -37,6 +37,7 @@ const GHTInput: React.FC<GHTInputProps> = ({
         className="outline-none text-[20px] bg-transparent w-full text-white font-normal px-4"
         inputMode="decimal"
         pattern="[0-9]*"
+        maxLength={20}
       />
     </div>
   );

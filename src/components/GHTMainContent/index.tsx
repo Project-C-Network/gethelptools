@@ -17,15 +17,30 @@ const GHTMainContent: React.FC<React.PropsWithChildren<{}>> = ({
   children,
 }) => {
   return (
-    <>
+    <div>
       <GHTSlider />
-      <div className="relative min-h-screen bg-black glow-border p-[40px] rounded-2xl relative rounded-2xl border border-white/10 bg-white/5 shadow-[0_0_60px_rgba(255,255,255,0.25)] shadow-white/20 relative z-10">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <PlanetBanner />
+      <div className="flex w-full">
+        <div className="w-[250px] text-amber-950 shadow-[0_0_60px_rgba(255,255,255,0.25)] bg-white/25 rounded-2xl">
+          <p>1</p>
         </div>
-        <div className="absolute flex justify-center w-full">{children}</div>
+        <div className="flex-grow">
+          <div className="relative min-h-screen glow-border p-[40px] rounded-2xl border border-white/10 shadow-[0_0_60px_rgba(255,255,255,0.25)] shadow-white/20 z-10 flex items-center justify-center bg-white/25 mx-0.5">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <PlanetBanner />
+            </div>
+            <div className="absolute flex justify-center w-full">
+              {children}
+            </div>
+          </div>
+        </div>
+        <div className="w-[250px] text-amber-950 shadow-[0_0_60px_rgba(255,255,255,0.25)] bg-white/25 rounded-2xl">
+          <p>2</p>
+        </div>
       </div>
-    </>
+      <div className="w-full h-[250px] my-0.5 text-amber-950 shadow-[0_0_60px_rgba(255,255,255,0.25)] bg-white/25 rounded-2xl">
+        <p>3</p>
+      </div>
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@ const GHTFooter = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="footer">
+    <footer>
       &copy; {year} GetHelpTools. All rights reserved.
     </footer>
   );

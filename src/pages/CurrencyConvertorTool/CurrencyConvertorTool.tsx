@@ -64,55 +64,56 @@ export const CurrencyConvertorTool: React.FC = () => {
   );
 
   return (
-    <div className="p-6 font-sans text-gray-800 max-w-md mx-auto">
-      <h2 className="text-2xl font-bold mb-4">💱 Currency Converter</h2>
+    <div className="flex flex-col p-6 font-sans">
+      <div className="max-w-md mx-auto">
+        <h2 className="text-2xl font-bold mb-4">Currency Converter</h2>
 
-      <GHTInput
-        name="amount"
-        value={form.amount}
-        onChange={handleChange}
-        placeholder="Enter amount"
-      />
-
-      <div className="mt-4 flex flex-col gap-4">
-        <label htmlFor="from-currency" className="sr-only">
-          From Currency
-        </label>
-
-        <GHTSelector
-          options={currencyOptions}
-          initialSelected={form.from}
-          onChange={(id) =>
-            handleChange({
-              target: { name: "from", value: id },
-            } as React.ChangeEvent<HTMLInputElement | HTMLSelectElement>)
-          }
+        <GHTInput
+          name="amount"
+          value={form.amount}
+          onChange={handleChange}
+          placeholder="Enter amount"
         />
 
-        <label htmlFor="to-currency" className="sr-only">
-          To Currency
-        </label>
-        <GHTSelector
-          options={currencyOptions}
-          initialSelected={form.to}
-          onChange={(id) =>
-            handleChange({
-              target: { name: "from", value: id },
-            } as React.ChangeEvent<HTMLInputElement | HTMLSelectElement>)
-          }
-        />
+        <div className="mt-4 flex flex-col gap-4">
+          <label htmlFor="from-currency" className="sr-only">
+            From Currency
+          </label>
 
-        <div className="flex justify-center w-full">
-          <GHTButton label="Convert" onClick={handleConvert} />
+          <GHTSelector
+            options={currencyOptions}
+            initialSelected={form.from}
+            onChange={(id) =>
+              handleChange({
+                target: { name: "from", value: id },
+              } as React.ChangeEvent<HTMLInputElement | HTMLSelectElement>)
+            }
+          />
+
+          <label htmlFor="to-currency" className="sr-only">
+            To Currency
+          </label>
+          <GHTSelector
+            options={currencyOptions}
+            initialSelected={form.to}
+            onChange={(id) =>
+              handleChange({
+                target: { name: "from", value: id },
+              } as React.ChangeEvent<HTMLInputElement | HTMLSelectElement>)
+            }
+          />
+
+          <div className="flex justify-center w-full">
+            <GHTButton label="Convert" onClick={handleConvert} />
+          </div>
         </div>
-
-        {result && (
-          <p className="text-lg font-medium mt-2" role="alert">
-            {form.amount} {form.from.toUpperCase()} = <strong>{result}</strong>{" "}
-            {form.to.toUpperCase()}
-          </p>
-        )}
       </div>
+      {result && (
+        <p className="text-lg font-medium mt-2" role="alert">
+          {form.amount} {form.from.toUpperCase()} = <strong>{result}</strong>{" "}
+          {form.to.toUpperCase()}
+        </p>
+      )}
     </div>
   );
 };

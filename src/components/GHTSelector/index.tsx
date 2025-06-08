@@ -44,7 +44,7 @@ function GHTSelector({
 
   return (
     <div
-      className={`relative inline-block w-full text-white select-none ${className}`}
+      className={`relative inline-block w-[350px] text-white select-none ${className}`}
       ref={ref}
     >
       <div
